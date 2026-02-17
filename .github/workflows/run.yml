@@ -1,0 +1,23 @@
+name: collector
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: start
+        run: |
+          echo "starting collector"
+
+      - name: simulate work
+        run: |
+          curl -s https://api.coindesk.com/v1/bpi/currentprice.json > /dev/null
+
+      - name: done
+        run: |
+          echo "cycle complete"
